@@ -3,16 +3,16 @@ title = "PHP Interop"
 weight = 14
 +++
 
-## Calling PHP functions
+## Calling PHP Functions
 
-PHP comes with huge set of functions that can be called from Phel by just adding a `php/` prefix to the function name.
+PHP comes with a huge set of functions that can be called from Phel by just adding a `php/` prefix to the function name.
 
 ```phel
 (php/strlen "test") # Calls PHP's strlen function and evaluates to 4
 (php/date "l") # Evaluates to something like "Monday"
 ```
 
-## PHP class instantiation
+## PHP Class Instantiation
 
 ```phel
 (php/new expr args*)
@@ -30,14 +30,14 @@ Evaluates `expr` and creates a new PHP class using the arguments. The instance o
 (php/new "\\DateTimeImmutable") # instantiate a new PHP class from string
 ```
 
-## PHP method and property call
+## PHP Method and Property Call
 
 ```phel
 (php/-> object (methodname expr*))
 (php/-> object property)
 ```
 
-Calls a method or property on a PHP object. Both `methodname` and `property` must be symbols and cannot be an evaluated value.
+Calls a method or property on a PHP object. Both `methodname` and `property` must be symbols and cannot be evaluated values.
 
 ```phel
 (ns my\module)
@@ -48,7 +48,7 @@ Calls a method or property on a PHP object. Both `methodname` and `property` mus
 (php/-> di s) # Evaluates to 30
 ```
 
-## PHP static method and property call
+## PHP Static Method and Property Call
 
 ```phel
 (php/:: class (methodname expr*))
@@ -68,7 +68,7 @@ Same as above, but for static calls on PHP classes.
 
 ```
 
-## PHP set object properties
+## PHP Set Object Properties
 
 ```phel
 (php/oset (php/-> object property) value)
@@ -82,7 +82,7 @@ Use `php/oset` to set a value to a class/object property.
 (php/oset (php/-> x name) "foo")
 ```
 
-## Get PHP-Array value
+## Get PHP-Array Value
 
 ```phel
 (php/aget arr index)
@@ -96,7 +96,7 @@ Equivalent to PHP's `arr[index] ?? null`.
 (php/aget (php/array "a" "b" "c") 5) # Evaluates to nil
 ```
 
-## Set PHP-Array value
+## Set PHP-Array Value
 
 ```phel
 (php/aset arr index value)
@@ -104,7 +104,7 @@ Equivalent to PHP's `arr[index] ?? null`.
 
 Equivalent to PHP's `arr[index] = value`.
 
-## Append PHP-Array value
+## Append PHP-Array Value
 
 ```phel
 (php/apush arr value)
@@ -112,7 +112,7 @@ Equivalent to PHP's `arr[index] = value`.
 
 Equivalent to PHP's `arr[] = value`.
 
-## Unset PHP-Array value
+## Unset PHP-Array Value
 
 ```phel
 (php/aunset arr index)
@@ -122,16 +122,16 @@ Equivalent to PHP's `unset(arr[index])`.
 
 ## `__DIR__` and `__FILE__`
 
-In Phel you can also use PHP Magic Methods `__DIR__` and `__FILE__`. These resolve to the dirname or filename of the Phel file.
+In Phel, you can also use PHP Magic Methods `__DIR__` and `__FILE__`. These resolve to the dirname or filename of the Phel file.
 
 ```phel
 (println __DIR__) # Prints the directory name of the file
 (println __FILE__) # Prints the filename of the file
 ```
 
-## Calling Phel functions from PHP
+## Calling Phel Functions from PHP
 
-Phel also provides a way to let you call Phel functions from PHP. This is useful for existing PHP application that wants to integrate Phel.
+Phel also provides a way to let you call Phel functions from PHP. This is useful for an existing PHP application that wants to integrate Phel.
 Therefore, you have to load the Phel namespace that you want to call at the beginning of your script. This can be done directly after the `autoload.php` file was loaded.
 
 For example, see [using-exported-phel-function.php](https://github.com/phel-lang/cli-skeleton/blob/main/example/using-exported-phel-function.php)
@@ -154,7 +154,7 @@ $result = $adder->adder(1, 2, 3);
 echo 'Result = ' . $result . PHP_EOL;
 ```
 
-Phel provide two ways to call Phel functions, manually or by using the `export` command.
+Phel provides two ways to call Phel functions, manually or by using the `export` command.
 
 ### Manually
 
@@ -174,9 +174,9 @@ class MyExistingClass {
 }
 ```
 
-### Using the `export` command
+### Using the `export` Command
 
-Alternatively, the `phel export` command can be used. This command will generate a wrapper class for all Phel functions that are marked as *export*.
+Alternatively, the `phel export` command can be used. This command will generate a wrapper class for all Phel functions that are marked as _export_.
 
 Before using the `export` command the required configuration options need to be added to `phel-config.php`:
 
@@ -192,7 +192,7 @@ return (new PhelConfig())
 
 A detailed description of the options can be found in the [Configuration](/documentation/configuration/#export) chapter.
 
-To mark a function as exported the following metadata needs to be added to the function:
+To mark a function as exported, the following metadata needs to be added to the function:
 
 ```phel
 (defn my-function

@@ -1,5 +1,5 @@
 +++
-title = "Control flow"
+title = "Control Flow"
 weight = 5
 +++
 
@@ -11,15 +11,15 @@ weight = 5
 
 A control flow structure. First evaluates _test_. If _test_ evaluates to `true`, only the _then_ form is evaluated and the result is returned. If _test_ evaluates to `false` only the _else_ form is evaluated and the result is returned. If no _else_ form is given, `nil` will be returned.
 
-The _test_ evaluates to `false` if its value is `false` or equal to `nil`. Every other value evaluates to `true`. In sense of PHP this means (`test != null && test !== false`).
+The _test_ evaluates to `false` if its value is `false` or equal to `nil`. Every other value evaluates to `true`. In sense of PHP, this means `test != null && test !== false`.
 
 ```phel
 (if true 10) # evaluates to 10
 (if false 10) # evaluates to nil
 (if true (print 1) (print 2)) # prints 1 but not 2
-(if 0 (print 1) (print 2)) # prints 2
+(if false (print 1) (print 2)) # prints 2
 (if nil (print 1) (print 2)) # prints 2
-(if [] (print 1) (print 2)) # prints 2
+(if [] (print 1) (print 2)) # prints 1
 ```
 
 ## Case
@@ -67,14 +67,16 @@ Iterates over each pair. If the first expression of the pair evaluates to logica
 ```phel
 (loop [bindings*] expr*)
 ```
+
 Creates a new lexical context with variables defined in bindings and defines a recursion point at the top of the loop.
 
 ```phel
 (recur expr*)
 ```
+
 Evaluates the expressions in order and rebinds them to the recursion point. A recursion point can be either a `fn` or a `loop`. The recur expressions must match the arity of the recursion point exactly.
 
-Internally `recur` is implemented as a PHP while loop and therefore prevents the _Maximum function nesting level_ errors.
+Internally, `recur` is implemented as a PHP while loop and therefore prevents the _Maximum function nesting level_ errors.
 
 ```phel
 (loop [sum 0
@@ -95,7 +97,8 @@ Internally `recur` is implemented as a PHP while loop and therefore prevents the
 (foreach [value valueExpr] expr*)
 (foreach [key value valueExpr] expr*)
 ```
-The `foreach` special form can be used to iterate over all kind of PHP datastructures. The return value of `foreach` is always `nil`. The `loop` special form should be preferred of the `foreach` special form whenever possible.
+
+The `foreach` special form can be used to iterate over all kinds of PHP data structures. The return value of `foreach` is always `nil`. The `loop` special form should be preferred over the `foreach` special form whenever possible.
 
 ```phel
 (foreach [v [1 2 3]]
@@ -119,17 +122,17 @@ sequence of bindings and modifiers. A binding is a sequence of three
 values `binding :verb expr`. Where `binding` is a binding as
 in `let` and `:verb` is one of the following keywords:
 
-* `:range` loop over a range, by using the range function.
-* `:in` loops over all values of a collection.
-* `:keys` loops over all keys/indexes of a collection.
-* `:pairs` loops over all key value pairs of a collection.
+- `:range` loop over a range, by using the range function.
+- `:in` loops over all values of a collection.
+- `:keys` loops over all keys/indexes of a collection.
+- `:pairs` loops over all key value pairs of a collection.
 
-After each loop binding additional modifiers can be applied. Modifiers
+After each loop binding, additional modifiers can be applied. Modifiers
 have the form `:modifier argument`. The following modifiers are supported:
 
-* `:while` breaks the loop if the expression is falsy.
-* `:let` defines additional bindings.
-* `:when` only evaluates the loop body if the condition is true.
+- `:while` breaks the loop if the expression is falsy.
+- `:let` defines additional bindings.
+- `:when` only evaluates the loop body if the condition is true.
 
 ```phel
 (for [x :range [0 3]] x) # Evaluates to [0 1 2]
@@ -158,7 +161,7 @@ have the form `:modifier argument`. The following modifiers are supported:
 (throw expr)
 ```
 
-The _expr_ is evaluated and thrown, therefore _expr_ must return a value that implements PHP's `Throwable` interface.
+The _expr_ is evaluated and thrown; therefore, _expr_ must return a value that implements PHP's `Throwable` interface.
 
 ## Try, Catch and Finally
 
@@ -166,22 +169,22 @@ The _expr_ is evaluated and thrown, therefore _expr_ must return a value that im
 (try expr* catch-clause* finally-clause?)
 ```
 
-All expressions are evaluated and if no exception is thrown the value of the last expression is returned. If an exception occurs and a matching _catch-clause_ is provided, its expression is evaluated and the value is returned. If no matching _catch-clause_ can be found the exception is propagated out of the function. Before returning normally or abnormally the optionally _finally-clause_ is evaluated.
+All expressions are evaluated and, if no exception is thrown, the value of the last expression is returned. If an exception occurs and a matching _catch-clause_ is provided, its expression is evaluated and the value is returned. If no matching _catch-clause_ can be found, the exception is propagated out of the function. Before returning normally or abnormally, the optional _finally-clause_ is evaluated.
 
 ```phel
 (try) # evaluates to nil
 
 (try
-  (throw (php/new Exception))
-  (catch Exception e "error")) # evaluates to "error"
+  (throw (php/new \Exception))
+  (catch \Exception e "error")) # evaluates to "error"
 
 (try
   (+ 1 1)
   (finally (print "test"))) # Evaluates to 2 and prints "test"
 
 (try
-  (throw (php/new Exception))
-  (catch Exception e "error")
+  (throw (php/new \Exception))
+  (catch \Exception e "error")
   (finally (print "test"))) # evaluates to "error" and prints "test"
 ```
 

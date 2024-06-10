@@ -11,7 +11,7 @@ Every Phel file is required to have a namespace. A valid namespace name starts w
 (ns name imports*)
 ```
 
-Defines the namespace for the current file and adds imports to the environment. Imports can either be _uses_ or _requires_. The keyword `:use` is used to import PHP classes, the keyword `:require` is used to import Phel modules and the keyword `:require-file` is used to load php files.
+Defines the namespace for the current file and adds imports to the environment. Imports can either be _uses_ or _requires_. The keyword `:use` is used to import PHP classes, the keyword `:require` is used to import Phel modules and the keyword `:require-file` is used to load PHP files.
 
 ```phel
 (ns my\custom\module
@@ -22,7 +22,7 @@ Defines the namespace for the current file and adds imports to the environment. 
 
 The call also sets the `*ns*` variable to the given namespace.
 
-### Import a Phel module
+### Import a Phel Module
 
 Before a Phel module can be used, it has to be imported with the keyword `:require`. Once imported, the module can be accessed by its name followed by a slash and the name of the public function or value.
 
@@ -53,7 +53,7 @@ To prevent name collision from other modules in different namespaces, aliases ca
   (:require hello-world\util :as utilities))
 ```
 
-Additionally, it is possible to refer symbols of other modules in the current namespace by using `:refer` keyword.
+Additionally, it is possible to refer symbols of other modules in the current namespace by using the `:refer` keyword.
 
 ```phel
 (ns hello-world\boot
@@ -62,9 +62,9 @@ Additionally, it is possible to refer symbols of other modules in the current na
 (greet util/my-name)
 ```
 
-Both, `:refer` and `:as` can be combined in any order.
+Keywords `:refer` and `:as` can be combined in any order.
 
-### Import a PHP class
+### Import a PHP Class
 
 PHP classes are imported with the keyword `:use`.
 
@@ -92,25 +92,25 @@ Importing PHP classes is considered a "better" coding style, but it is optional.
 (php/new \Some\Php\ClassName)
 ```
 
-## Require PHP files
+## Require PHP Files
 
-In some cases it is necessary to load external PHP file via PHP's `require_once` statement. This can be archived by using the `:require-file` keyword. For example, to load composer's autoload file the following code can be used:
+In some cases, it is necessary to load external PHP files via PHP's `require_once` statement. This can be achieved by using the `:require-file` keyword. For example, to load composer's autoload file the following code can be used:
 
 ```
 (ns hello-world\boot
   (:require-file "vendor/autoload.php"))
 ```
 
-As alternative, you can also call `(php/require_once "vendor/autload.php")` anywhere in your code. However, especially for the autoload file this statement is executed to late, because Phel's core library needs to load PHP files via the autoloader. Therefore, it is recommended to use the `:require-file` method.
+As an alternative, you can also call `(php/require_once "vendor/autload.php")` anywhere in your code. However, especially for the autoload file, this statement is executed too late, because Phel's core library needs to load PHP files via the autoloader. Therefore, it is recommended to use the `:require-file` method.
 
-## Namespaced keywords
+## Namespaced Keywords
 
-If code or data is shared to the outside world simple keywords can lead to collisions. This problem can be solved by using namespaced keywords.
+If code or data is shared to the outside world, simple keywords can lead to collisions. This problem can be solved by using namespaced keywords.
 
 There are multiple options to define namespaced keywords. The most simple one is to define a fully qualified keyword with the full namespace followed by a `/` and the keyword name.
 
 ```phel
-:my\namespace/foo # a absolute namespaced keyword
+:my\namespace/foo # an absolute namespaced keyword
 ```
 
 The `::` shortcut can be used to assign the current namespace to the keyword

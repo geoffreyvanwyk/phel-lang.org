@@ -1,5 +1,5 @@
 +++
-title = "Authoring libraries"
+title = "Authoring Libraries"
 weight = 22
 +++
 
@@ -26,10 +26,9 @@ The most important part in this file is the `require` section. In here, you need
 
 For example, the above code specifies that the library supports Phel starting from version 0.7 and up to version 1.0 when released. You can be more specific here or less specific depending on what you want to do. See [Composer](https://getcomposer.org/doc/articles/versions.md) documentation for more info on version constraints.
 
-
 ### phel-config.php
 
-Since the `mabasic/phel-json` library was written, there is a new way of writing the configuration file. The old way used an array (you can still use this today), but the newer way is much more elegant and preferred way of configuring your Phel project.
+Since the `mabasic/phel-json` library was written, there is a new way of writing the configuration file. The old way used an array (you can still use this today), but the newer way is much more elegant and the preferred way of configuring your Phel project.
 
 Here is an example config:
 
@@ -51,31 +50,31 @@ return (new PhelConfig())
     ->setKeepGeneratedTempFiles(false);
 ```
 
-To find out more about what each configuration option means read the documentation for [Configuration](/documentation/configuration/).
+To find out more about what each configuration option mean, read the documentation for [Configuration](/documentation/configuration/).
 
-## Topics of interest
+## Topics of Interest
 
 ### Namespaces
 
-You can namespace your library however you want, but to keep to best practices your library should follow this convention: `{username}\{library-name}`.
+You can namespace your library however you want, but to keep to best practices, your library should follow this convention: `{username}\{library-name}`.
 
-Read the documentation on [Namespaces](/documentation/namespaces/). 
+Read the documentation on [Namespaces](/documentation/namespaces/).
 
 ### Testing
 
 Having tests for your library makes it more stable because you can easily see which Phel version makes your library not work.
 
-Read the documentation on [Testing](/documentation/testing/). 
+Read the documentation on [Testing](/documentation/testing/).
 
-### PHP interop
+### PHP Interop
 
 This applies when you want to use your Phel library from PHP. Be sure to double check the configuration file.
 
-Read the documentation on [PHP interop](/documentation/php-interop/#calling-phel-functions-from-php). 
+Read the documentation on [PHP interop](/documentation/php-interop/#calling-phel-functions-from-php).
 
-### Private code
+### Private Code
 
-When writing a library you get to decide what function, variables or macros you want to expose to the library users. This is important in cases where you don't want the library users to use a specific function or value for some reason.
+When writing a library, you get to decide what function, variables or macros you want to expose to the library users. This is important in cases where you don't want the library users to use a specific function or value for some reason.
 
 Available macros:
 
@@ -85,7 +84,7 @@ Available macros:
 
 ## Publishing
 
-Phel library is just like any PHP library in the sense that the process for publishing is the same. You login to [Packagist](https://packagist.org/) and submit your repository. Then, you can install the library in your Phel or PHP application in the same way:
+A Phel library is just like any PHP library in the sense that the process for publishing is the same. You login to [Packagist](https://packagist.org/) and submit your repository. Then, you can install the library in your Phel or PHP application in the same way:
 
 ```bash
 # For example:
@@ -93,4 +92,3 @@ composer require mabasic/phel-json
 ```
 
 Happy Pheling!
-

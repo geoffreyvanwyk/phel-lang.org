@@ -1,5 +1,5 @@
 +++
-title = "Truth and Boolean operations"
+title = "Truth and Boolean Operations"
 weight = 4
 +++
 

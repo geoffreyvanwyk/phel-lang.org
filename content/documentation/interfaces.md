@@ -3,7 +3,7 @@ title = "Interfaces"
 weight = 13
 +++
 
-## Defining interfaces
+## Defining Interfaces
 
 An interface in Phel defines an abstract set of functions. It is directly mapped to a PHP interface. An interface can be defined by using the `definterface` macro:
 
@@ -15,17 +15,17 @@ An interface in Phel defines an abstract set of functions. It is directly mapped
 
 Each method in the interface has at least one parameter that is bound to the current object (`$this`) later in the implementation. An optional documentation string can be provided as last argument of each method. Additionally, the macro defines functions for each method of the interface.
 
-Compared to PHP interfaces, it is not possible to extend a new interface from another existing interfaces.
+Compared to PHP interfaces, it is not possible to extend a new interface from other existing interfaces.
 
-## Implementing interfaces
+## Implementing Interfaces
 
-The only way to directly implement interfaces in Phel is to use Structs. To recap the definition from the previous chapter: A Struct is a special kind of Map that supports a predefined number of keys and is associated to a global name. Internally, Phel Structs are PHP classes.
+The only way to directly implement interfaces in Phel is to use structs. To recap the definition from the previous chapter: A struct is a special kind of map that supports a predefined number of keys and is associated to a global name. Internally, Phel structs are PHP classes.
 
 ```phel
 (defstruct my-struct [a b c]) # Defines the struct my-struct
 ```
 
-The `defstruct` macro allows additional parameters after the list of fields in order to implement one or more interfaces. First you have to define the name of the interface and afterwards you need to implement all methods of the interface. This can be repeated for all interfaces that the struct should implement. Since Phel interfaces are just PHP interface you can also implement any other PHP interface.
+The `defstruct` macro allows additional parameters after the list of fields in order to implement one or more interfaces. First you have to define the name of the interface and afterwards you need to implement all methods of the interface. This can be repeated for all interfaces that the struct should implement. Since Phel interfaces are just PHP interfaces, you can also implement any other PHP interface.
 
 ```phel
 (definterface MyFirstInterface

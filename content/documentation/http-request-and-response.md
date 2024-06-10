@@ -5,7 +5,7 @@ weight = 15
 
 ## HTTP Request
 
-Phel provides an easy method to access the current HTTP request. While in PHP the request is distributed in different globals variables (`$_GET`, `$_POST`, `$_SERVER`, `$_COOKIES` and `$_FILES`) Phel normalizes them into a single struct. All functions and structs are defined in the `phel\http` module.
+Phel provides an easy method to access the current HTTP request. While in PHP the request is distributed in different superglobal variables (`$_GET`, `$_POST`, `$_SERVER`, `$_COOKIES` and `$_FILES`), Phel normalizes them into a single struct. All functions and structs are defined in the `phel\http` module.
 
 The request struct is defined like this:
 
@@ -13,8 +13,8 @@ The request struct is defined like this:
 (defstruct request [
   method            # HTTP Method ("GET", "POST", ...)
   uri               # the 'uri' struct (see below)
-  headers           # Map of all headers. Keys are keywords, Values are string
-  parsed-body       # The parsed body ($_POST), when availabe otherwise nil
+  headers           # Map of all headers. Keys are keywords, Values are strings
+  parsed-body       # The parsed body ($_POST), when availabe; otherwise, nil
   query-params      # Map with all query parameters ($_GET)
   cookie-params     # Map with all cookie parameters ($_COOKIE)
   server-params     # Map with all server parameters ($_SERVER)
@@ -42,7 +42,7 @@ The request struct is defined like this:
 ])
 ```
 
-To create a request struct the `phel\http` module must be imported. Then the `request-from-globals` function can be called.
+To create a request struct, the `phel\http` module must be imported. Then the `request-from-globals` function can be called.
 
 ```phel
 (ns my-namepace
@@ -65,7 +65,7 @@ The `phel\http` module also contains a response struct. This struct can be used 
 ])
 ```
 
-To make it easier to create responses. Phel has two helpers methods to create a response.
+To make it easier to create responses, Phel has two helper methods to create a response.
 
 ```phel
 (ns my-namepace
@@ -80,7 +80,7 @@ To make it easier to create responses. Phel has two helpers methods to create a 
 # Evaluates to (response 200 {} "Hello World" "1.1" "OK")
 ```
 
-To send the response to the client the `emit-response` function can be used.
+To send the response to the client, the `emit-response` function can be used.
 
 ```phel
 (ns my-namepace
@@ -93,4 +93,4 @@ To send the response to the client the `emit-response` function can be used.
 
 ## HTTP Router
 
-A Phel router based on symfony routing component: [phel-lang/router](https://github.com/phel-lang/router)
+A Phel router based on Symfony routing component: [phel-lang/router](https://github.com/phel-lang/router)

@@ -6,9 +6,9 @@ weight = 10
 Destructuring is a way to bind names to values inside a data structure.
 Destructuring works for function parameters, `let` and `loop` bindings.
 
-### Sequential data structures
+## Sequential Data Structures
 
-Sequential data structures can be extract using the vector syntax.
+Sequential data structures can be extracted using the vector syntax.
 
 ```phel
 (let [[a b] [1 2]]
@@ -24,7 +24,7 @@ Sequential data structures can be extract using the vector syntax.
   (apply + a b rest)) # Evaluates to 10
 ```
 
-### Associative data structures
+## Associative Data Structures
 
 Associative data structures can be extracted using the map syntax.
 
@@ -36,9 +36,9 @@ Associative data structures can be extracted using the map syntax.
   (+ a b c)) # Evaluates to 6
 ```
 
-### Indexed sequential
+## Indexed Sequential Data Structures
 
-Indexed sequential can also be extracted by indices using the map syntax.
+Indexed sequential data structures can also be extracted by indices using the map syntax.
 
 ```phel
 (let [{0 a 1 b} [1 2]]

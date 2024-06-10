@@ -1,15 +1,15 @@
 +++
-title = "Data structures"
+title = "Data Structures"
 weight = 9
 +++
 
-Phel has four main data structures. All data structures are persistent data structures. A persistent data structure preserves the previous version of itself when it is modified. Such data structures are also called immutable data structures. The difference of persistent data structures and immutable data structures is that immutable data structures copy the whole data structure, while persistent data structures share unmodified values with their previous versions.
+Phel has four main data structures. All data structures are persistent data structures. A persistent data structure preserves the previous version of itself when it is modified. Such data structures are also immutable. The difference between persistent data structures and immutable data structures is that immutable data structures copy the whole data structure, while persistent data structures share unmodified values with their previous versions.
 
 ## Lists
 
-A persistent list is simple a linked list. Access or modifications on the first element is efficient, random access is not. In Phel, a list has a special meaning. They are interpreted as function calls, macro calls or special forms by the compiler.
+A persistent list is simply a linked list. Access or modifications on the first element is efficient, random access is not. In Phel, a list has a special meaning. They are interpreted as function calls, macro calls or special forms by the compiler.
 
-To create a list surround the white space separated values with parentheses or use the `list` function.
+To create a list, surround the whitespace-separated values with parentheses or use the `list` function.
 
 ```phel
 (do 1 2 3) # list with 4 entries
@@ -17,7 +17,7 @@ To create a list surround the white space separated values with parentheses or u
 '(1 2 3) # use a quote to create a list
 ```
 
-To access values in a list the functions `get`, `first`, `second`, `next` and `rest` can be used.
+To access values in a list, the functions `get`, `first`, `second`, `next` and `rest` can be used.
 
 ```phel
 (get (list 1 2 3) 0) # Evaluates to 1
@@ -36,7 +36,7 @@ New values can only be added to the front of the list with the `cons` function.
 (cons 3 (list 1 2)) # Evaluates to (3 1 2)
 ```
 
-To get the length of the list the `count` function can be used
+To get the length of the list, the `count` function can be used.
 
 ```phel
 (count (list)) # Evaluates to 0
@@ -45,16 +45,16 @@ To get the length of the list the `count` function can be used
 
 ## Vectors
 
-Vectors are an indexed, sequential data structure. They offer efficient random access (by index) and are very efficient in appending values at the end.
+Vectors are indexed, sequential data structures. They offer efficient random access (by index) and are very efficient in appending values at the end.
 
-To create a vector wrap the white space seperated values with brackets or use the `vector` function.
+To create a vector, wrap the whitespace-seperated values with brackets or use the `vector` function.
 
 ```phel
 [1 2 3] # Creates a new vector with three values
 (vector 1 2 3) # Creates a new vector with three values
 ```
 
-To get a value by its index use the `get` function. Similar to list you can use the `first` and `second` function to access the first or second values of the vector.
+To get a value by its index, use the `get` function. Similar to a list, you can use the `first` and `second` functions to access the first or second values of the vector.
 
 ```phel
 (get [1 2 3] 0) # Evaluates to 1
@@ -68,7 +68,7 @@ New values can be appended by using the `push` function.
 (push [1 2 3] 4) # Evaluates to [1 2 3 4]
 ```
 
-To change an existing value use the `put` function
+To change an existing value, use the `put` function.
 
 ```phel
 (put [1 2 3] 0 4) # Evaluates to [4 2 3]
@@ -84,16 +84,16 @@ A vector can be counted using the `count` function.
 
 ## Maps
 
-A Map contains key-value-pairs in random order. Each possible key appears at most once in the collection. In contrast to PHP's associative arrays, Phel Maps can have any type of keys that implement the `HashableInterface` and the `EqualsInterface`.
+A map contains key-value-pairs in random order. Each possible key appears at most once in the collection. In contrast to PHP's associative arrays, Phel maps can have any type of keys that implement the `HashableInterface` and the `EqualsInterface`.
 
-To create a map wrap the key and values in curly brackets or use the `hash-map` function.
+To create a map, wrap the keys and values in curly braces or use the `hash-map` function.
 
 ```phel
-{:key1 value1 :key2 value2} # Create a new map with two key-value-pairs
-(hash-map :key1 value1 :key2 value2) # Create a new map using the hash-map function
+{:key1 "value1" :key2 "value2"} # Create a new map with two key-value-pairs
+(hash-map :key1 "value1" :key2 "value2") # Create a new map using the hash-map function
 ```
 
-Use the `get` function to access a value by its key
+Use the `get` function to access a value by its key.
 
 ```phel
 (get {:a 1 :b 2} :a) # Evaluates to 1
@@ -101,14 +101,14 @@ Use the `get` function to access a value by its key
 (get {:a 1 :b 2} :c) # Evaluates to nil
 ```
 
-To add or update a key-value pair in the map use the `put` function
+To add or update a key-value pair in the map, use the `put` function.
 
 ```phel
 (put {} :a "hello") # Evaluates to {:a "hello"}
 (put {:a "foo"} :a "bar") # Evaluates to {:a "bar"}
 ```
 
-A value in a map can be removed with the `unset` function
+A value in a map can be removed with the `unset` function.
 
 ```phel
 (unset {:a "foo"} :a) # Evaluates to {}
@@ -123,7 +123,7 @@ As in the other data structures, the `count` function can be used to count the k
 
 ## Structs
 
-A Struct is a special kind of Map. It only supports a predefined number of keys and is associated to a global name. The Struct not only defines itself but also a predicate function.
+A struct is a special kind of map. It only supports a predefined number of keys and is associated to a global name. The struct not only defines itself but also a predicate function.
 
 ```phel
 (defstruct my-struct [a b c]) # Defines the struct
@@ -133,32 +133,32 @@ A Struct is a special kind of Map. It only supports a predefined number of keys 
   (put x :a 12) # Evaluates to (my-struct 12 2 3)
 ```
 
-Internally, Phel Structs are PHP classes where each key correspondence to an object property. Therefore, Structs can be faster than Maps.
+Internally, Phel structs are PHP classes wherein each key corresponds to an object property. Therefore, structs can be faster than maps.
 
 ## Sets
 
-A Set contains unique values in random order. All types of values are allowed that implement the `HashableInterface` and the `EqualsInterface`.
+A set contains unique values in random order. All types of values are allowed that implement the `HashableInterface` and the `EqualsInterface`.
 
-A new set can be created by using the `set` function
+A new set can be created by using the `set` function.
 
 ```phel
 (set 1 2 3) # Creates a new set with three values
 ```
 
-The `push` function can be used to add a new value to the Set.
+The `push` function can be used to add a new value to the set.
 
 ```phel
 (push (set 1 2 3) 4) # Evaluates to (set 1 2 3 4)
 (push (set 1 2 3) 2) # Evaluates to (set 1 2 3)
 ```
 
-Similar to the Map the `unset` function can be used to remove a value from the list
+Similar to the map, the `unset` function can be used to remove a value from the set.
 
 ```phel
 (unset (set 1 2 3) 2) # Evaluates to (set 1 3)
 ```
 
-Again the `count` function can be used to count the elements in the set
+Again, the `count` function can be used to count the elements in the set.
 
 ```phel
 (count (set)) # Evaluates to 0
@@ -197,27 +197,27 @@ The symmetric difference of two sets or more is the set of elements which are in
 
 ## Transients
 
-Nearly all persistent data structures have a transient version (except for Persistent List). The transient version of each persistent data structure is a mutable version of them. It stores the value in the same way as the persistent version but instead of returning a new persistent version with every modification it modifies the current version. Transient versions are a bit faster and can be used as builders for new persistent collections. Since transients use the same underlying storage it is very fast to convert a persistent data structure to a transient and back.
+Nearly all persistent data structures have a transient version (except for persistent list). The transient version of each persistent data structure is a mutable version of them. It stores the value in the same way as the persistent version but instead of returning a new persistent version with every modification it modifies the current version. Transient versions are a bit faster and can be used as builders for new persistent collections. Since transients use the same underlying storage, it is very fast to convert a persistent data structure to a transient and back.
 
-For example, if we want to convert a PHP Array to a persistent map. This function can be used:
+For example, if we want to convert a PHP array to a persistent map, this function can be used:
 
 ```phel
 (defn php-array-to-map
   "Converts a PHP Array to a map."
   [arr]
-  (let [res (transient {})] # Convert a persistent data to a transient
+  (let [res (transient {})] # Convert a persistent data structure to a transient
     (foreach [k v arr]
       (put res k v))  # Fill the transient map (mutable)
     (persistent res))) # Convert the transient map to a persistent map.
 ```
 
-## Data structures are functions
+## Data Structures are Functions
 
-In Phel all data structures can also be used as functions.
+In Phel, all data structures (except the persistent list) can also be used as functions.
 
 ```phel
-((list 1 2 3) 0) # Same as (get (list 1 2 3) 0)
+((list 1 2 3) 0) # BAD! A persistent list is not callable
 ([1 2 3] 0) # Same as (get [1 2 3] 0)
 ({:a 1 :b 2} :a) # Same as (get {:a 1 :b 2} :a)
-((set 1 2 3) 1)
+((set 1 2 3) 1) # Evaluates to 1. Can be used to check whether a set contains a value; returns `nil`, otherwise.
 ```

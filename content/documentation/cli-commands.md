@@ -10,10 +10,10 @@ Phel includes a series of commands out-of-the-box.
 vendor/bin/phel list
 ```
 
-## Build the project
+## Build the Project
 
 ```bash
-php phel build
+vendor/bin/phel build
 # Usage:
 #   build [options]
 #
@@ -22,9 +22,10 @@ php phel build
 #       --source-map|--no-source-map  Enable source maps
 ```
 
-Build the current project into the main php path. This means that the compiled phel code into PHP will be saved in that directory being the entry point the `out/index.php`, and you can run the PHP code directly using the PHP interpreter. This will improve the runtime performance, because there won't be a need to compile the code again.
+Build the current project into the main PHP path. This means that the Phel code will be transpiled into PHP code that will be saved into that directory, with the file `out/index.php` being the entry point. You can run the PHP code directly using the PHP interpreter. This will improve the runtime performance, because there won't be a need to compile the code again.
 
 [Configuration](/documentation/configuration/#buildconfig) in `phel-config.php`:
+
 ```php
 <?php
 return (new \Phel\Config\PhelConfig())
@@ -33,17 +34,18 @@ return (new \Phel\Config\PhelConfig())
         ->setMainPhpPath('out/index.php'));
 ```
 
-## Export definitions
+## Export Definitions
 
-Export all definitions with the metadata `{:export true}` as PHP classes. 
+Export all definitions with the metadata `{:export true}` as PHP classes.
 
-It generates PHP classes at namespace level and a method for each exported definition. This allows you to use the exported phel functions from your PHP code.
+It generates PHP classes at namespace level and a method for each exported definition. This allows you to use the exported Phel functions from your PHP code.
 
 ```bash
 vendor/bin/phel export
 ```
 
 [Configuration](/documentation/configuration/#export-definitions) in `phel-config.php`:
+
 ```php
 <?php
 return (new \Phel\Config\PhelConfig())
@@ -53,7 +55,7 @@ return (new \Phel\Config\PhelConfig())
         ->setTargetDirectory('src/PhelGenerated'));
 ```
 
-## Format phel files
+## Format Phel Files
 
 Formats the given files. You can pass relative or absolute paths.
 
@@ -61,12 +63,13 @@ Formats the given files. You can pass relative or absolute paths.
 vendor/bin/phel format
 # Usage:
 #   format <paths>...
-# 
+#
 # Arguments:
 #   paths                 The file paths that you want to format.
 ```
 
 [Configuration](/documentation/configuration/) in `phel-config.php`:
+
 ```php
 <?php
 return (new PhelConfig())
@@ -75,7 +78,7 @@ return (new PhelConfig())
 
 ## Read-Eval-Print Loop
 
-Start a Repl. This is and interactive prompt (stands for Read-eval-print loop). It is very helpful to test out small tasks or to play around with the language itself.
+Start a REPL. This is and interactive prompt (stands for Read-Eval-Print Loop). It is very helpful to test out small tasks or to play around with the language itself.
 
 ```bash
 vendor/bin/phel repl
@@ -83,7 +86,7 @@ vendor/bin/phel repl
 
 Read more about the [REPL](/documentation/repl) in its own chapter.
 
-## Run a script
+## Run a Script
 
 Code can be executed from the command line by calling the run command, followed by the file path or namespace:
 
@@ -91,16 +94,17 @@ Code can be executed from the command line by calling the run command, followed 
 vendor/bin/phel run
 # Usage:
 #   run [options] [--] <path> [<argv>...]
-# 
+#
 # Arguments:
 #   path                  The file path that you want to run.
 #   argv                  Optional arguments
-# 
+#
 # Options:
 #   -t, --with-time       With time awareness
 ```
 
 [Configuration](/documentation/configuration/#srcdirs) in `phel-config.php`:
+
 ```php
 <?php
 return (new PhelConfig())
@@ -109,18 +113,18 @@ return (new PhelConfig())
 
 Read more about [running the code](/documentation/getting-started/#running-the-code) in the getting started page.
 
-## Test your phel logic
+## Test your Phel Logic
 
-Tests the given files. If no filenames are provided all tests in the "tests" directory are executed.
+Tests the given files. If no filenames are provided, all tests in the "tests" directory are executed.
 
 ```bash
 vendor/bin/phel test
 # Usage:
 #   test [options] [--] [<paths>...]
-# 
+#
 # Arguments:
 #   paths                  The file paths that you want to test.
-# 
+#
 # Options:
 #   -f, --filter[=FILTER]  Filter by test names.
 #       --testdox          Report test execution progress in TestDox format.
@@ -128,6 +132,7 @@ vendor/bin/phel test
 ```
 
 [Configuration](/documentation/configuration/#testdirs) in `phel-config.php`:
+
 ```php
 <?php
 return (new PhelConfig())
@@ -137,6 +142,7 @@ return (new PhelConfig())
 Use the `filter` option to run only the tests that contain that filter.
 
 [Configuration](/documentation/configuration/) in `phel-config.php`:
+
 ```php
 <?php
 return (new PhelConfig())

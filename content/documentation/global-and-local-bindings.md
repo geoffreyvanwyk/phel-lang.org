@@ -1,13 +1,14 @@
 +++
-title = "Global and local bindings"
+title = "Global and Local Bindings"
 weight = 6
 +++
 
-## Definition (def)
+## Global bindings (def)
 
 ```phel
 (def name meta? value)
 ```
+
 This special form binds a value to a global symbol. A definition cannot be redefined at a later point.
 
 ```phel
@@ -15,7 +16,7 @@ This special form binds a value to a global symbol. A definition cannot be redef
 (def sum-of-three (+ 1 2 3))
 ```
 
-To each definition metadata can be attached. Metadata is either a Keyword, a String or a Map.
+To each definition, metadata can be attached. Metadata is either a keyword, a string or a map.
 
 ```phel
 (def my-private-definition :private 12)
@@ -28,7 +29,8 @@ To each definition metadata can be attached. Metadata is either a Keyword, a Str
 ```phel
 (let [bindings*] expr*)
 ```
-Creates a new lexical context with assignments defined in bindings. Afterwards the list of expressions is evaluated and the value of the last expression is returned. If no expression is given `nil` is returned.
+
+Creates a new lexical context with assignments defined in bindings. Afterwards, the list of expressions is evaluated and the value of the last expression is returned. If no expression is given, `nil` is returned.
 
 ```phel
 (let [x 1
@@ -38,6 +40,7 @@ Creates a new lexical context with assignments defined in bindings. Afterwards t
 (let [x 1
       y (+ x 2)]) # Evaluates to nil
 ```
+
 All assignments defined in _bindings_ are immutable and cannot be changed.
 
 ## Variables
@@ -62,7 +65,7 @@ The `deref` function can be used to extract the value from the variable. The `se
 (deref foo) # Evaluates to 20
 ```
 
-To update a variable with a function the `swap!` function can be used.
+To update a variable with a function, the `swap!` function can be used.
 
 ```phel
 (def foo (var 10))

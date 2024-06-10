@@ -7,7 +7,7 @@ Phel comes with some configuration options. They are stored in the `phel-config.
 
 ## Structure
 
-These are all Phel specific configuration options available, along with the values that are set by default.
+These are all Phel-specific configuration options available, along with the values that are set by default.
 
 ```php
 <?php
@@ -31,7 +31,7 @@ return (new \Phel\Config\PhelConfig())
 ;
 ```
 
-## Options in detail
+## Options in Detail
 
 This chapter contains all configuration options explained in detail.
 
@@ -87,7 +87,6 @@ return (new \Phel\Config\PhelConfig())
 
 Set a list of Phel files that should be ignored when building the code.
 
-
 ```php
 <?php
 return (new \Phel\Config\PhelConfig())
@@ -98,7 +97,7 @@ return (new \Phel\Config\PhelConfig())
 
 ### NoCacheWhenBuilding
 
-Set a list of Phel files that should be not cached when building the code. This means, they will be transpiled all the time; regardless when you use the `--cache` or `--no-cache` flag.
+Set a list of Phel files that should not be cached when building the code. This means, they will be transpiled all the time; regardless of when you use the `--cache` or `--no-cache` flag.
 
 ```php
 <?php
@@ -111,7 +110,6 @@ return (new \Phel\Config\PhelConfig())
 ### FormatDirs
 
 Set a list of directories whose files will be formatted when running the format command.
-
 
 ```php
 <?php

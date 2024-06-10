@@ -9,9 +9,9 @@ weight = 7
 (fn [params*] expr*)
 ```
 
-Defines a function. A function consists of a list of parameters and a list of expression. The value of the last expression is returned as the result of the function. All other expression are only evaluated for side effects. If no expression is given, the function returns `nil`.
+Defines a function. A function consists of a list of parameters and a list of expressions. The value of the last expression is returned as the result of the function. All other expressions are only evaluated for side effects. If no expression is given, the function returns `nil`.
 
-Function also introduce a new lexical scope that is not accessible outside the function.
+A function also introduces a new lexical scope that is not accessible outside the function.
 
 ```phel
 (fn []) # Function with no arguments that returns nil
@@ -20,7 +20,7 @@ Function also introduce a new lexical scope that is not accessible outside the f
 (fn [a b] (+ a b)) # A function that returns the sum of a and b
 ```
 
-Function can also be defined as variadic function with an infinite amount of arguments using the `&` separator.
+A function can also be defined as a variadic function with an infinite number of arguments using the `&` separator.
 
 ```phel
 (fn [& args] (count args)) # A variadic function that counts the arguments
@@ -29,9 +29,9 @@ Function can also be defined as variadic function with an infinite amount of arg
 
 There is a shorter form to define an anonymous function. This omits the parameter list and names parameters based on their position.
 
-* `$` is used for a single parameter
-* `$1`, `$2`, `$3`, etc are used for multiple parameters
-* `$&` is used for the remaining variadic parameters
+- `$` is used for a single parameter
+- `$1`, `$2`, `$3`, etc are used for multiple parameters
+- `$&` is used for the remaining variadic parameters
 
 ```phel
 |(+ 6 $) # Same as (fn [x] (+ 6 x))
@@ -39,8 +39,7 @@ There is a shorter form to define an anonymous function. This omits the paramete
 |(sum $&) # Same as (fn [& xs] (sum xs))
 ```
 
-
-## Global functions
+## Global Functions
 
 ```phel
 (defn name docstring? attributes? [params*] expr*)
@@ -84,11 +83,12 @@ Similar to `loop`, functions can be made recursive using `recur`.
     (recur (php/- x 1))))
 ```
 
-## Apply functions
+## Apply Functions
 
 ```phel
 (apply f expr*)
 ```
+
 Calls the function with the given arguments. The last argument must be a list of values, which are passed as separate arguments, rather than a single list. Apply returns the result of the calling function.
 
 ```phel
@@ -97,13 +97,13 @@ Calls the function with the given arguments. The last argument must be a list of
 (apply + 1 2 3) # BAD! Last element must be a list
 ```
 
-## Passing by reference
+## Passing by Reference
 
 Sometimes it is required that a variable should pass to a function by reference. This can be done by applying the `:reference` metadata to the symbol.
 
 ```phel
 (fn [^:reference my-arr]
-  (php/apush my-arr 10))
+  (php/array_push my-arr 10))
 ```
 
 Support for references is very limited in Phel. Currently, it only works for function arguments (except destructuring).
